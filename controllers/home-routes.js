@@ -69,10 +69,10 @@ router.get('/dashboard', (req, res) => {
   if (!req.session.loggedIn) {
     res.redirect('/login');
     return;
-  } else {
-    res.render('dashboard');
-  }
-  
+  } 
+  res.render('dashboard', {
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 router.get('/login', (req, res) => {
