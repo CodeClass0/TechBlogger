@@ -1,14 +1,12 @@
 const router = require('express').Router();
-const { blogPosts } = require('../models');
+const { Post } = require('../models');
 // Import the custom middleware
 const withAuth = require('../utils/auth');
 
 // GET all posts for homepage
 router.get('/', async (req, res) => {
   try {
-    const dbPostData = await blogPosts.findAll({
-        
-    });
+    const dbPostData = await Post.findAll({});
     //  simplified body of posts.
     const posts = dbPostData.map((post) =>
       post.get({ plain: true })
