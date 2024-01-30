@@ -3,31 +3,26 @@ const { blogPosts } = require('../models');
 // Import the custom middleware
 const withAuth = require('../utils/auth');
 
-// GET all galleries for homepage
-// router.get('/', async (req, res) => {
-//   try {
-//     const dbGalleryData = await Gallery.findAll({
-//       include: [
-//         {
-//           model: Painting,
-//           attributes: ['filename', 'description'],
-//         },
-//       ],
-//     });
-
-//     const galleries = dbGalleryData.map((gallery) =>
-//       gallery.get({ plain: true })
-//     );
-
-//     res.render('homepage', {
-//       galleries,
-//       loggedIn: req.session.loggedIn,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+// GET all posts for homepage
+router.get('/', async (req, res) => {
+  try {
+    const dbPostData = await blogPosts.findAll({
+        
+    });
+    //  simplified body of posts.
+    const posts = dbPostData.map((post) =>
+      post.get({ plain: true })
+    );
+    console.log(posts);
+    res.render('homepage', {
+      posts,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 // // GET one gallery
 // // Use the custom middleware before allowing the user to access the gallery
