@@ -17,10 +17,10 @@
     <a href="/">Home</a>
     <a href="/dashboard">Dashboard</a>
     {{#if loggedIn}}
-     <a href="/logout">Logout</a>
-    {{!-- <button id="logout" class="btn-no-style">Logout</button> --}}
+    <button id="logout" class="btn-no-style">Logout</button>
+    <script src="./js/logout.js"></script>
     {{else}}
-    <a href="/login">Login</a>
+    <a href="/login" >Login</a>
     {{/if}}
     {{!-- {{#if loggedIn}}
     <a href="/logout">Logout</a>
