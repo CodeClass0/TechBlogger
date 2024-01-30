@@ -22,6 +22,40 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/dashboard', (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+    return;
+  } 
+  res.render('dashboard', {
+    loggedIn: req.session.loggedIn,
+  });
+});
+
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('login');
+});
+
+router.get('/:id', async (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+    return;
+  } 
+  try {
+    const dbPostData = await Post.findByPk(req.params.id, {});
+    const clean = dbPostData.get({ plain: true });
+    res.render('individualpost', clean);
+  } catch (err){
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 // // GET one gallery
 // // Use the custom middleware before allowing the user to access the gallery
 // router.get('/gallery/:id', withAuth, async (req, res) => {
@@ -66,23 +100,6 @@ router.get('/', async (req, res) => {
 // });
 
 
-router.get('/dashboard', (req, res) => {
-  if (!req.session.loggedIn) {
-    res.redirect('/login');
-    return;
-  } 
-  res.render('dashboard', {
-    loggedIn: req.session.loggedIn,
-  });
-});
 
-router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
-
-  res.render('login');
-});
 
 module.exports = router;
