@@ -1,5 +1,24 @@
 <div>
-    <a href='/{{id}}'><h2>{{title}}</h2></a>
-    <h3>{{createdAt}}</h3>
-    <p>{{post_content}}</p>
+    <h2>{{clean.title}}</h2>
+    <h3>Posted By {{clean.user.username}} on {{clean.created_at}}</h3>
+    <p>{{clean.post_content}}</p>
+    {{#unless commentsTrue}}
+    <h4>Be the first to leave a comment!</h4>
+    {{else}}
+    <h4>Comments</h4>
+    {{!-- Comment block here --}}
+    {{/unless}}
 </div>
+
+<div>
+    <div>
+        <form class="form comment-form">
+        <label>Leave a comment:</label>
+        <input class="form-input" type="text" id="comment-input" />
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+    </div>
+</div>
+
+
+<script src="./js/commentSubmit.js"></script>
