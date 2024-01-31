@@ -1,6 +1,6 @@
 const loginFormHandler = async (event) => {
     event.preventDefault();
-  
+
     const email = document.querySelector('#email-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
   
@@ -13,6 +13,7 @@ const loginFormHandler = async (event) => {
   
       if (response.ok) {
         document.location.assign('/');
+        
       } else {
         alert('Failed to log in.');
       }
@@ -40,6 +41,7 @@ const loginFormHandler = async (event) => {
       }
     }
   };
+
   
   document
     .querySelector('.login-form')

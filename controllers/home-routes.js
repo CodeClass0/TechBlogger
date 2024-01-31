@@ -7,6 +7,10 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     const dbPostData = await Post.findAll({
+      include: {
+        model: User,
+        attributes: ['username']
+      }
     });
     //  simplified body of posts.
     const posts = dbPostData.map((post) =>
@@ -78,7 +82,7 @@ router.get('/:id', async (req, res) => {
         commentsTrue: true,
         clean,
         loggedIn: req.session.loggedIn
-          }
+        }
         )
       } else {
         res.render('individualpost', {
@@ -91,6 +95,20 @@ router.get('/:id', async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
+});
+
+router.post("/api/:id", async (req, res) => {
+  try {
+      const submittedUserData = await Comment.create({
+          user_id: req.body.userId,
+          post_id: req.body.postId,
+          comment_text: req.body.commentText
+      });
+      res.status(200).json(req.body.id);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
 });
 
 // // GET one gallery

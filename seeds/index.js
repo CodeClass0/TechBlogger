@@ -5,11 +5,13 @@ const userSeed = require('./userData');
 
 const seedAll = async () => {
   await sequelize.sync({ force: true });
-
+  
+  //this order matters!
   await userSeed();
   await blogPosts();
   await comments();
-
+ 
+;
 
   process.exit(0);
 };

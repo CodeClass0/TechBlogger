@@ -16,6 +16,11 @@ const blogdata = [
     post_content: "I have really loved learning about ORM's. It's really simplified the way I create queries in SQL!",
     user_id: 1
   },
+  {
+    title: 'sample',
+    post_content: "I have really loved learning about ORM's. It's really simplified the way I create queries in SQL!",
+    user_id: 2
+  },
 ];
 
 const seedBlog = () => Post.bulkCreate(blogdata);
