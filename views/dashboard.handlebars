@@ -1,1 +1,18 @@
-<h1>dash</h1>
+<div class="dashboard">
+    {{#if hasPosts}}
+        <ul>
+            {{#each posts as |post|}}
+            <li>
+                <div>
+                    <a href='/{{id}}'><h2>{{title}}</h2></a>
+                    <h3>Posted by {{post.user.username}} on {{createdAt}}</h3>
+                    <p>{{post_content}}</p>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
+</div>
+
+<script src="./js/dashboard.js"></script>
