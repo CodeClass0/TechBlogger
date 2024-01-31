@@ -72,7 +72,7 @@ router.get('/:id', async (req, res) => {
     
     const clean = dbPostData.get({ plain: true });
     console.log(clean);
-    //check if there's a comment before rendering a comments block
+    //check if there are any comments to show the comment block in the handlebar
     if (clean.comments[0] != null){
       res.render('individualpost', {
         commentsTrue: true,

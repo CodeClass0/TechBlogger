@@ -6,7 +6,15 @@
     <h4>Be the first to leave a comment!</h4>
     {{else}}
     <h4>Comments</h4>
-    {{!-- Comment block here --}}
+    <div>
+        <ul>
+        {{#each clean.comments as |comment|}}
+        <li>{{comment.user.username}} said: "{{comment.comment_text}}" on {{comment.created_at}}</li>
+        {{/each}}
+        </ul>
+
+    </div>
+
     {{/unless}}
 </div>
 
