@@ -1,10 +1,16 @@
 const callRoute = async (event) => {
-    alert();
+    const username = document.querySelector("#postblock").className;
+
+    let userId = await fetch(`/api/users/${username}`, {
+        method: "GET",
+        headers: { 'Content-Type': 'application/json' }
+    });
+    
     let postContent = await fetch(`/dashboard`, {
         method: "GET",
         headers: { 'Content-Type': 'application/json' }
     });
-    alert(postContent);
-}
 
-document.querySelector('.dashboard').addEventListener('load', callRoute);
+}
+// window.onload = () => {alert();}
+document.querySelector('.dashboard').addEventListener('load', callRoute());

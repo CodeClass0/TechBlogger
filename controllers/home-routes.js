@@ -26,14 +26,23 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', async (req, res) => {
   if (!req.session.loggedIn) {
     res.redirect('/login');
     return;
-  } 
+  }; 
+
+  // const dbPostData = await Post.findAll({
+  //   where: {
+  //     user_id: req.session.user_id
+  //   }
+  // })
+
+  req.session.hasPosts = true;
   res.render('dashboard', {
     loggedIn: req.session.loggedIn,
-  });
+    hasPosts: req.session.hasPosts
+})
 });
 
 router.get('/login', (req, res) => {
