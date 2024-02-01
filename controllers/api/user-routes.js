@@ -23,21 +23,21 @@ router.post('/signup', async (req, res) => {
 });
 
 
-// router.get('/:name', async (req,res) => {
-//   console.log(req.params.name);
-//   try{
-//     const dbUserData = await User.findOne({
-//       where: {
-//         username: req.params.name
-//         },
-//       }
-//     ) 
-//     res.status(200).json(dbUserData.id);
-//   } catch (err){
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+router.get('/:email', async (req,res) => {
+  console.log(req.params.name);
+  try{
+    const dbUserData = await User.findOne({
+      where: {
+        email: req.params.email
+        },
+      }
+    ) 
+    res.status(200).json(dbUserData.id);
+  } catch (err){
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 
 // Login
@@ -66,6 +66,7 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
+      sessionStorage.setItem('login', {username: req.body.email});
       req.session.loggedIn = true;
       req.session.email = dbUserData.email;
       req.session.user_id = dbUserData.user_id;
