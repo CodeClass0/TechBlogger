@@ -32,18 +32,16 @@ router.get('/dashboard', async (req, res) => {
     res.redirect('/login');
     return;
   }; 
-
-  // const dbPostData = await Post.findAll({
-  //   where: {
-  //     user_id: req.session.user_id
-  //   }
-  // })
+  const dbPostData = await Post.findAll({
+    where: {
+      user_id: req.session.user_id
+    }
+  })
 
   req.session.hasPosts = true;
   res.render('dashboard', {
     loggedIn: req.session.loggedIn,
-    hasPosts: req.session.hasPosts
-})
+    hasPosts: req.session.hasPosts})
 });
 
 router.get('/login', (req, res) => {

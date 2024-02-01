@@ -1,8 +1,8 @@
 
 const callRoute = async (event) => {
+
+
     const username = document.querySelector("#postblock").className;
-
-
     const useremail = sessionStorage.getItem("login"); //This should return an object containing username: email
 
     let userId = await fetch(`/api/users/${useremail.username}`, {
