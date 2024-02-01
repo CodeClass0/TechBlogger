@@ -66,7 +66,7 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
-      sessionStorage.setItem('login', {username: req.body.email});
+      // sessionStorage.setItem('login', {username: req.body.email});
       req.session.loggedIn = true;
       req.session.email = dbUserData.email;
       req.session.user_id = dbUserData.user_id;
