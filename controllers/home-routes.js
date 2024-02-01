@@ -32,11 +32,11 @@ router.get('/dashboard', async (req, res) => {
     res.redirect('/login');
     return;
   }; 
-  const dbPostData = await Post.findAll({
-    where: {
-      user_id: req.session.user_id
-    }
-  })
+  // const dbPostData = await Post.findAll({
+  //   where: {
+  //     user_id: req.session.user_id
+  //   }
+  // })
 
   req.session.hasPosts = true;
   res.render('dashboard', {
