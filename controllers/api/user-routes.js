@@ -1,21 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-router.get('/:name', async (req,res) => {
-  console.log(req.params.name);
-  try{
-    const dbUserData = await User.findOne({
-      where: {
-        username: req.params.name
-        },
-      }
-    ) 
-    res.status(200).json(dbUserData.id);
-  } catch (err){
-    console.log(err);
-    res.status(500).json(err);
-  }
-})
+
 
 // Signup new user
 router.post('/', async (req, res) => {
@@ -35,6 +21,24 @@ router.post('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+// router.get('/:name', async (req,res) => {
+//   console.log(req.params.name);
+//   try{
+//     const dbUserData = await User.findOne({
+//       where: {
+//         username: req.params.name
+//         },
+//       }
+//     ) 
+//     res.status(200).json(dbUserData.id);
+//   } catch (err){
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
+
 
 // Login
 router.post('/login', async (req, res) => {

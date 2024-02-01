@@ -26,6 +26,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+
 router.get('/dashboard', async (req, res) => {
   if (!req.session.loggedIn) {
     res.redirect('/login');
@@ -119,7 +120,6 @@ router.post("/api/:id", async (req, res) => {
       res.status(500).json(err);
     }
 });
-
 
 
 
